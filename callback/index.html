@@ -5,32 +5,32 @@
     <title>VK Authorization</title>
 </head>
 <body>
-    <h2>VK Authorization</h2>
-    <p>Processing authorization...</p>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
+<h2>Authorization successful</h2>
 
-        const code = params.get("code");
-        const state = params.get("state");
-        const deviceId = params.get("device_id");
+<p>Copy the values below to your local PC.</p>
 
-        if (code) {
-            document.body.innerHTML = `
-                <h2>Authorization successful</h2>
-                <p>Authorization code received.</p>
-                <p>You can close this page.</p>
-            `;
+<p><b>Code:</b></p>
+<pre id="code"></pre>
 
-            console.log("Authorization code received.");
-            console.log("State:", state);
-            console.log("Device ID:", deviceId);
-        } else {
-            document.body.innerHTML = `
-                <h2>Authorization failed</h2>
-                <p>No authorization code was received.</p>
-            `;
-        }
-    </script>
+<p><b>Device ID:</b></p>
+<pre id="device_id"></pre>
+
+<p><b>State:</b></p>
+<pre id="state"></pre>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("code").textContent =
+    params.get("code") || "NOT FOUND";
+
+document.getElementById("device_id").textContent =
+    params.get("device_id") || "NOT FOUND";
+
+document.getElementById("state").textContent =
+    params.get("state") || "NOT FOUND";
+</script>
+
 </body>
 </html>
