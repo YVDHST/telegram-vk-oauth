@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VK Authorization</title>
+</head>
+<body>
+    <h2>VK Authorization</h2>
+    <p>Processing authorization...</p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        const code = params.get("code");
+        const state = params.get("state");
+        const deviceId = params.get("device_id");
+
+        if (code) {
+            document.body.innerHTML = `
+                <h2>Authorization successful</h2>
+                <p>Authorization code received.</p>
+                <p>You can close this page.</p>
+            `;
+
+            console.log("Authorization code received.");
+            console.log("State:", state);
+            console.log("Device ID:", deviceId);
+        } else {
+            document.body.innerHTML = `
+                <h2>Authorization failed</h2>
+                <p>No authorization code was received.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
